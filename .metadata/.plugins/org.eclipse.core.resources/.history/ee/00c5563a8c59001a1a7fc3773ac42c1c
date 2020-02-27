@@ -1,0 +1,11 @@
+import java.util.Scanner; 
+
+public class Manager {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		DBConnection.connectDB();
+		//StockRTData test = new StockRTData("GOOG","1min");
+	}
+
+}

@@ -1,0 +1,16 @@
+import java.net.URL;
+
+public class StockHData {
+
+		public StockHData(String symbol, String start_date, String end_data)
+		{
+			String url = "";
+			try {
+				
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+}

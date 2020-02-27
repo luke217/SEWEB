@@ -1,0 +1,43 @@
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class StockRTData extends StockDataModel{
+	
+	public StockRTData(String symbol,String interval)
+	{
+		String url = URL_PREFIX+"TIME_SERIES_INTRADAY&symbol="+symbol+"&interval="+interval+"&apikey="+API_KEY+"&datatype=csv";
+		try {
+			URL rowdata = new URL(url);
+			URLConnection data = rowdata.openConnection();
+			Scanner input  = new Scanner(data.getInputStream());
+			if(input.hasNextLine())
+			{
+				input.nextLine();
+			}
+			while(input.hasNextLine())
+			{
+				String line = input.nextLine();
+				String[] arrOfStr = line.split(",");
+						
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			    Date parsedDate = dateFormat.parse(arrOfStr[0]);
+			    
+			    float open = Float.valueOf(arrOfStr[1]);
+			    float high = Float.valueOf(arrOfStr[2]);
+			    float low = Float.valueOf(arrOfStr[3]);
+			    float close = Float.valueOf(arrOfStr[4]);
+			    int volume = Integer.valueOf(arrOfStr[5]);
+			    DBConnection.insertData(1, close, parsedDate, volume);
+				//System.out.println(line);
+			}
+			input.close();
+		}
+		catch(Exception e)
+		{
+			System.out.print(e);
+		}
+	}
+}

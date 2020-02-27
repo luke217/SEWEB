@@ -1,0 +1,28 @@
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
+
+public class StockHData {
+
+		public StockHData(String symbol, String start_date, String end_data)
+		{
+			String url = "";
+			try {
+				URL rowdata = new URL(url);
+				URLConnection data = rowdata.openConnection();
+				Scanner input  = new Scanner(data.getInputStream());
+	
+				while(input.hasNextLine())
+				{
+					String line = input.nextLine();
+					//Debug
+					System.out.println(line);
+				}
+				input.close();
+			}
+			catch(Exception e)
+			{
+				System.out.print(e);
+			}
+		}
+}

@@ -1,0 +1,18 @@
+import java.net.URL;
+import java.net.URLConnection;
+
+public class StockHData {
+
+		public StockHData(String symbol, String start_date, String end_data)
+		{
+			String url = "";
+			try {
+				URL rowdata = new URL(url);
+				URLConnection
+			}
+			catch(Exception e)
+			{
+				System.out.print(e);
+			}
+		}
+}
